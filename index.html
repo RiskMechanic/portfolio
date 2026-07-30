@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NOME COGNOME] — Portfolio</title>
+<meta name="description" content="Portfolio professionale — Studente di Gestione Aziendale, Università di Trento">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --color-bg: #F7F4EE;
+    --color-card: #FFFFFF;
+    --color-ink: #16232F;
+    --color-ink-soft: #4B5560;
+    --color-body: #333B3D;
+    --color-accent: #7C8B6B;
+    --color-accent-deep: #5F6E52;
+    --color-line: #DEDACD;
+    --max-width: 860px;
+    --side-pad: clamp(20px, 5vw, 40px);
+    --section-pad: clamp(44px, 7vw, 76px);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-body);
+    font-family: "IBM Plex Sans", sans-serif;
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--side-pad);
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent-deep);
+  }
+
+  /* ---------- TOP NAV ---------- */
+
+  .topbar {
+    border-top: 3px solid var(--color-ink);
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  nav.quicklinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 24px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-soft);
+  }
+
+  nav.quicklinks a {
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  nav.quicklinks a:hover {
+    color: var(--color-accent-deep);
+    border-color: var(--color-accent-deep);
+  }
+
+  /* ---------- HERO ---------- */
+
+  header.hero {
+    padding: clamp(36px, 6vw, 64px) 0 var(--section-pad);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  @media (min-width: 700px) {
+    .hero-grid { grid-template-columns: 1fr 180px; gap: 48px; }
+  }
+
+  .hero-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-accent);
+    padding: 6px;
+    justify-self: start;
+  }
+
+  @media (min-width: 700px) {
+    .hero-photo { width: 180px; height: 180px; justify-self: center; order: 2; }
+  }
+
+  .hero-photo-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #B7B0A0;
+    overflow: hidden;
+  }
+
+  .hero-text h1 {
+    font-family: "Fraunces", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    color: var(--color-ink);
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-text .tagline {
+    font-size: 1.08rem;
+    color: var(--color-ink-soft);
+    margin: 0 0 28px;
+    max-width: 48ch;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .btn {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 3px;
+    border: 1px solid var(--color-ink);
+    color: var(--color-ink);
+    transition: background 0.2s ease, color 0.2s ease;
+    display: inline-block;
+  }
+
+  .btn:hover { background: var(--color-ink); color: var(--color-bg); }
+
+  .btn.btn-solid { background: var(--color-ink); color: var(--color-bg); }
+  .btn.btn-solid:hover { background: var(--color-accent-deep); border-color: var(--color-accent-deep); }
+
+  /* ---------- SECTIONS ---------- */
+
+  section { padding: var(--section-pad) 0; }
+  section + section { border-top: 1px solid var(--color-line); }
+
+  section h2.section-title {
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-size: 1.55rem;
+    color: var(--color-ink);
+    margin: 10px 0 30px;
+  }
+
+  section.about p {
+    font-size: 1.08rem;
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  /* ---------- LEDGER-STYLE ENTRIES ---------- */
+
+  .entry {
+    display: grid;
+    grid-template-columns: 108px 1fr;
+    gap: 4px 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .entry:first-of-type { border-top: 1px solid var(--color-line); }
+
+  .entry-date {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    color: var(--color-ink-soft);
+    padding-top: 2px;
+  }
+
+  .entry-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-ink);
+    margin: 0 0 6px;
+  }
+
+  .entry-title span { font-weight: 400; color: var(--color-ink-soft); }
+
+  .entry p { margin: 0; font-size: 0.94rem; color: var(--color-body); }
+
+  @media (max-width: 480px) {
+    .entry { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* ---------- SKILLS / PILLS ---------- */
+
+  .skills-block { margin-bottom: 30px; }
+  .skills-block:last-child { margin-bottom: 0; }
+
+  .skills-block h3 {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--color-ink-soft);
+    margin: 0 0 14px;
+  }
+
+  .pill-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .pill {
+    font-size: 0.87rem;
+    padding: 8px 16px;
+    border: 1px solid var(--color-line);
+    border-radius: 3px;
+    background: var(--color-card);
+    color: var(--color-body);
+  }
+
+  /* ---------- PROJECTS (expandable) ---------- */
+
+  .project-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    margin-bottom: 18px;
+    overflow: hidden;
+  }
+
+  .project-card summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .project-card summary::-webkit-details-marker { display: none; }
+
+  .project-card summary .proj-title {
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--color-ink);
+  }
+
+  .project-card summary .proj-sub {
+    display: block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--color-accent-deep);
+    margin-top: 6px;
+    letter-spacing: 0.03em;
+  }
+
+  .toggle-icon {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1.1rem;
+    color: var(--color-ink-soft);
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .project-card[open] .toggle-icon { transform: rotate(45deg); }
+
+  .project-body {
+    padding: 0 28px 28px;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .proj-desc {
+    max-width: 58ch;
+    color: var(--color-body);
+    margin: 22px 0 24px;
+    font-size: 0.95rem;
+  }
+
+  .ledger-table { width: 100%; border-collapse: collapse; }
+  .ledger-table tr { border-bottom: 1px solid var(--color-line); }
+  .ledger-table tr:first-child { border-top: 1px solid var(--color-line); }
+
+  .ledger-table td { padding: 13px 0; vertical-align: top; }
+
+  .ledger-table td:first-child {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent-deep);
+    width: 34%;
+    padding-right: 16px;
+  }
+
+  .ledger-table td:last-child { font-size: 0.94rem; color: var(--color-ink); }
+
+  .ledger-table a {
+    color: var(--color-ink);
+    border-bottom: 1px solid var(--color-accent);
+    text-decoration: none;
+  }
+  .ledger-table a:hover { color: var(--color-accent-deep); }
+
+  .screenshot-box {
+    margin-top: 24px;
+    border: 1px dashed var(--color-line);
+    border-radius: 3px;
+    padding: 36px 20px;
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #ADA695;
+  }
+
+    /* ---------- IMAGE GALLERY ---------- */
+ 
+  .gallery {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 4px 4px 14px;
+    margin-top: 24px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+ 
+  .gallery::-webkit-scrollbar { height: 6px; }
+  .gallery::-webkit-scrollbar-track { background: transparent; }
+  .gallery::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 3px; }
+ 
+  .gallery-item {
+    position: relative;
+    flex: 0 0 auto;
+    width: 240px;
+    scroll-snap-align: start;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    background: var(--color-bg);
+  }
+ 
+  .gallery-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+ 
+  .expand-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(22, 35, 47, 0.75);
+    color: #F7F4EE;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+    padding: 0;
+  }
+ 
+  .expand-btn:hover { background: var(--color-accent-deep); }
+ 
+  /* ---------- LIGHTBOX ---------- */
+ 
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(22, 35, 47, 0.94);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 28px;
+  }
+ 
+  .lightbox.is-open { display: flex; }
+ 
+  .lightbox img {
+    max-width: 100%;
+    max-height: 88vh;
+    border-radius: 3px;
+  }
+ 
+  .lightbox-close {
+    position: absolute;
+    top: 22px;
+    right: 26px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(247, 244, 238, 0.4);
+    background: transparent;
+    color: #F7F4EE;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+ 
+  .lightbox-close:hover { background: rgba(247, 244, 238, 0.12); }
+ 
+  /* ---------- FOOTER ---------- */
+
+  footer {
+    padding: var(--section-pad) 0 72px;
+    border-top: 3px solid var(--color-ink);
+  }
+
+  footer p {
+    max-width: 50ch;
+    color: var(--color-ink-soft);
+    font-size: 0.96rem;
+    margin: 10px 0 26px;
+  }
+
+  .footer-links { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* ---------- REVEAL ---------- */
+
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="wrap topbar">
+  <nav class="quicklinks">
+    <a href="#profilo">Profilo</a>
+    <a href="#istruzione">Istruzione</a>
+    <a href="#esperienza">Esperienza</a>
+    <a href="#competenze">Competenze</a>
+    <a href="#progetti">Progetti</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+</div>
+
+<header class="hero wrap">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <h1>BOX ALIF</h1>
+      <p class="tagline">Laureando in Gestione Aziendale, Università di Trento — in procinto di iniziare la Laurea Magistrale in Finanza (LM-16). Appassionato di dati, logica e strategia aziendale.</p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="mailto:alifbox.career@gmail.com">Scrivimi</a>
+        <a class="btn" href="linkedin.com/ln/alif-box" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="[LINK cv]" target="_blank" rel="noopener">Scarica CV</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-inner">
+        <img src="images/profile.png" alt="foto profilo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="profilo" class="about wrap reveal">
+  <span class="eyebrow">Profilo</span>
+  <h2 class="section-title" style="margin-top:10px;">Chi sono:</h2>
+  <p>
+    Un percorso costruito con curiosità più che con linearità: dagli studi tecnici in elettrotecnica e ingegneria industriale, 
+    alla scelta consapevole di Gestione Aziendale, fino alla Magistrale in Finanza. 
+  </p>
+  <p>
+    Il filo conduttore è l'interesse per unire rigore analitico e logica finanziaria — 
+    messo in pratica anche nello sviluppo di strumenti software per la gestione contabile e fintech.
+  </p>
+</section>
+
+<section id="istruzione" class="wrap reveal">
+  <span class="eyebrow">Istruzione</span>
+  <h2 class="section-title">Percorso di studi</h2>
+
+  <div class="entry">
+    <div class="entry-date">2026 —</div>
+    <div>
+      <p class="entry-title">Laurea Magistrale in Finanza <span>(LM-16) · Università di Trento</span></p>
+      <p>Ammissione confermata nella prima sessione.</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-date">2023 – 2026</div>
+    <div>
+      <p class="entry-title">Laurea Triennale in Gestione Aziendale <span>(L-18) · Università di Trento</span></p>
+      <p>Laureando, esami conclusi e voto atteso 100/110.</p>
+    </div>
+  </div>
+
+  <div class="entry">
+  <div class="entry-date">2019 – 2022</div>
+  <div>
+    <p class="entry-title">Ingegneria Industriale <span>(L-9R) · Università di Trento</span></p>
+    <p>Percorso di studi che ha rafforzato l'approccio analitico, prima di orientarmi
+    consapevolmente verso la gestione d'impresa.</p>
+  </div>
+</div>
+
+  <div class="entry">
+    <div class="entry-date">2013 – 2018</div>
+    <div>
+      <p class="entry-title">Diploma di Tecnico Industriale <span>· Istituto G. Floriani</span></p>
+      <p>Indirizzo Perito elettrotecnico.</p>
+    </div>
+  </div>
+</section>
+
+<section id="esperienza" class="wrap reveal">
+  <span class="eyebrow">Esperienza</span>
+  <h2 class="section-title">Percorso professionale</h2>
+
+  <div class="entry">
+    <div class="entry-date">2017</div>
+    <div>
+      <p class="entry-title">Tirocinio — Web Developer <span>· TESIA</span></p>
+      <p>Collaborazione con team di sviluppo nella gestione di progetti web per aziende clienti.</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-date">2016</div>
+    <div>
+      <p class="entry-title">Tirocinio — Tecnico Elettronico <span>· TESIA</span></p>
+      <p>Manutenzione e verifica di sistemi elettronici, con approccio sistematico
+      all'identificazione e risoluzione di anomalie tecniche.</p>
+    </div>
+  </div>
+</section>
+
+<section id="competenze" class="wrap reveal">
+  <span class="eyebrow">Competenze</span>
+  <h2 class="section-title">Cosa so fare:</h2>
+
+  <div class="skills-block">
+    <h3>Business &amp; Finanza</h3>
+    <div class="pill-row">
+      <span class="pill">Contabilità e analisi di bilancio</span>
+      <span class="pill">Analisi economica di mercato</span>
+      <span class="pill">Reportistica</span>
+      <span class="pill">Gestionale SEAC</span>
+    </div>
+  </div>
+
+  <div class="skills-block">
+    <h3>Tecniche</h3>
+    <div class="pill-row">
+      <span class="pill">Excel</span>
+      <span class="pill">Python</span>
+      <span class="pill">TypeScript</span>
+      <span class="pill">Kotlin</span>
+      <span class="pill">C</span>
+      <span class="pill">MATLAB</span>
+    </div>
+  </div>
+</section>
+
+<section id="progetti" class="wrap reveal">
+  <span class="eyebrow">Progetti</span>
+  <h2 class="section-title">Cosa ho costruito:</h2>
+
+  <details class="project-card">
+    <summary>
+      <span>
+        <span class="proj-title">TESI: Analisi di reddittività dei modelli di business nel settore Open Source</span>
+        <span class="proj-sub">Clicca per i dettagli</span>
+      </span>
+      <span class="toggle-icon">+</span>
+    </summary>
+    <div class="project-body">
+      <p class="proj-desc">Tesi di laurea triennale.</p>
+      <table class="ledger-table">
+        <tr><td>Relatore</td><td>Prof. Diego Ponte</td></tr>
+        <tr><td>Materia</td><td>Sistemi informativi aziendali</td></tr>
+        <tr><td>Status</td><td>In corso...</td></tr>
+        <tr><td>Link</td><td><a href="[LINK]" target="_blank" rel="noopener">[LINK]</a></td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="project-card">
+    <summary>
+      <span>
+        <span class="proj-title">ERP CLOUD - Gestionale Contabile O.S. Saas</span>
+        <span class="proj-sub">Clicca per i dettagli</span>
+      </span>
+      <span class="toggle-icon">+</span>
+    </summary>
+    <div class="project-body">
+      <p class="proj-desc">Progettazione e sviluppo di un'applicazione ERP full cloud (ERPCloud) rilasciata in ambiente di produzione su Vercel. Il progetto nasce con l'obiettivo di centralizzare le operazioni di business (come la gestione dei contatti, la fatturazione e la logistica aziendale) all'interno di un'unica interfaccia web reattiva e accessibile. Sviluppato seguendo logiche di scalabilità cloud-based, il software rappresenta un prototipo funzionante (MVP) pensato per la micro e piccola impresa, strutturato per integrare moduli gestionali interconnessi.</p>
+      <table class="ledger-table">
+        <tr><td>Ruolo</td><td>Developer</td></tr>
+        <tr><td>Stack tecnologico</td><td>TypeScript</td></tr>
+        <tr><td>Funzionalità</td><td>Funzionalità modulari essenziali per ogni tipo di pmi</td></tr>
+        <tr><td>Repository</td><td><a href="https://erpcloud-jade.vercel.app/" target="_blank" rel="noopener">erpcloud-jade.vercel.app/</a></td></tr>
+      </table>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="images/erpcloud dashboard.png" alt="Screenshot 1 — Gestionale contabile">
+          <button class="expand-btn" data-full="images/erpcloud dashboard.png" aria-label="Apri immagine a schermo intero">⤢</button>
+        </div>
+        <div class="gallery-item">
+          <img src="images/erpcloud contab.png" alt="Screenshot 2 — Gestionale contabile">
+          <button class="expand-btn" data-full="images/erpcloud contab.png" aria-label="Apri immagine a schermo intero">⤢</button>
+        </div>
+        <div class="gallery-item">
+          <img src="images/erpcloud insert.png" alt="Screenshot 2 — Gestionale contabile">
+          <button class="expand-btn" data-full="images/erpcloud insert.png" aria-label="Apri immagine a schermo intero">⤢</button>
+        </div>
+        <div class="gallery-item">
+          <img src="images/erpcloud profili.png" alt="Screenshot 2 — Gestionale contabile">
+          <button class="expand-btn" data-full="images/erpcloud profili.png" aria-label="Apri immagine a schermo intero">⤢</button>
+        </div>
+      </div>
+    </div>
+  </details>
+
+
+  <details class="project-card">
+    <summary>
+      <span>
+        <span class="proj-title">FIONA - ERP offline/ Enterprise server </span>
+        <span class="proj-sub">Clicca per i dettagli</span>
+      </span>
+      <span class="toggle-icon">+</span>
+    </summary>
+    <div class="project-body">
+      <p class="proj-desc">Molteplici versioni:</p>
+      <p>Prima versione, build di frontend&backend con solo python. Si tratta di un software contabile con input DSL/terminal. Motore contabile separato dal layer frontale, con zero rischio di sicurezza e modificabilità dati. Presenza di audit trail con hash per ciascun operazione, immutabilità di dati storici.</p>
+      <p>Seconda versione, architettura in Rust con uso di PostGreSQL. Capacità fully-offline o enterprise server senza ambiguity di multi commitment contemporanei. Data la complessità del progetto, questo è ancora in corso.</p>
+      <table class="ledger-table">
+        <tr><td>Ruolo</td><td>Developer</td></tr>
+        <tr><td>Stack tecnologico</td><td>Python - SQL - </td></tr>
+        <tr><td>Funzionalità</td><td>[FUNZIONALITÀ]</td></tr>
+        <tr><td>Repository</td><td><a href="[LINK]" target="_blank" rel="noopener">[LINK]</a></td></tr>
+      </table>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="images/ContaIDE.png" alt="Screenshot 1 — Gestionale contabile">
+          <button class="expand-btn" data-full="images/ContaIDE.png" aria-label="Apri immagine a schermo intero">⤢</button>
+        </div>
+      </div>
+    </div>
+  </details>
+
+
+  <details class="project-card">
+    <summary>
+      <span>
+        <span class="proj-title">AIDA Link: Automated Multi-Company Financial Data Standardizer</span>
+        <span class="proj-sub">Clicca per i dettagli</span>
+      </span>
+      <span class="toggle-icon">+</span>
+    </summary>
+    <div class="project-body">
+      <p class="proj-desc">Sviluppo di una soluzione in Python per automatizzare il flusso di pulizia e standardizzazione dei dati estratti dalla piattaforma AIDA. Lo script trasforma dati grezzi multi-impresa in report .xlsx strutturati e puliti secondo specifiche aziendali, riducendo drasticamente i tempi di elaborazione manuale</p>
+      <table class="ledger-table">
+        <tr><td>Ruolo</td><td>Developer</td></tr>
+        <tr><td>Stack tecnologico</td><td>Python</td></tr>
+        <tr><td>Funzionalità</td><td>Data: ingestion, cleaning, stadardization & export.</td></tr>
+        <tr><td>Repository</td><td><a href="https://github.com/RiskMechanic/AidaToBilanciStandard" target="_blank" rel="noopener">github</a></td></tr>
+      </table>
+    </div>
+  </details>  
+
+
+  <details class="project-card">
+    <summary>
+      <span>
+        <span class="proj-title">AIDA Analytics Engine: Automated Financial Statement & Ratio Analyzer</span>
+        <span class="proj-sub">Clicca per i dettagli</span>
+      </span>
+      <span class="toggle-icon">+</span>
+    </summary>
+    <div class="project-body">
+      <p class="proj-desc">Sviluppo di un motore di riclassificazione e analisi finanziaria automatizzata in Python per l'elaborazione massiva (batch processing) di database aziendali. Lo script acquisisce dati patrimoniali e anagrafici pre-standardizzati e genera in autonomia report individuali in formato Excel per molteplici imprese simultaneamente. Il sistema organizza i dati storici su base pluriennale e automatizza il calcolo dei tre pilastri contabili fondamentali insieme ai principali indicatori di performance, azzerando i tempi di calcolo manuale e standardizzando l'output per l'analisi societaria.</p>
+      <table class="ledger-table">
+        <tr><td>Ruolo</td><td>Developer</td></tr>
+        <tr><td>Stack tecnologico</td><td>Python</td></tr>
+        <tr><td>Funzionalità</td><td>Automated data mapping, batch processing, calcolatore dati economici e finanziari organizzati.</td></tr>
+        <tr><td>Repository</td><td><a href="https://github.com/RiskMechanic/AIDA-Analytics-Engine" target="_blank" rel="noopener">github</a></td></tr>
+      </table>
+    </div>
+  </details>
+  
+  <details class="project-card">
+    <summary>
+      <span>
+        <span class="proj-title">CDS: Pianificazione finanziaria Bomè SpA</span>
+        <span class="proj-sub">Clicca per i dettagli</span>
+      </span>
+      <span class="toggle-icon">+</span>
+    </summary>
+    <div class="project-body">
+      <p class="proj-desc">[DESCRIZIONE — sostituisci o rimuovi questo blocco se non applicabile]</p>
+      <table class="ledger-table">
+        <tr><td>Ruolo</td><td>Team Leader</td></tr>
+        <tr><td>Stack tecnologico</td><td>[STACK]</td></tr>
+        <tr><td>Funzionalità</td><td>[FUNZIONALITÀ]</td></tr>
+        <tr><td>Repository</td><td><a href="https://github.com/RiskMechanic/Business-plans" target="_blank" rel="noopener">github</a></td></tr>
+      </table>
+    </div>
+  </details>
+
+</section>
+
+
+
+<footer id="contatti" class="wrap reveal">
+  <span class="eyebrow">Contatti</span>
+  <p>Per qualsiasi informazione o per ricevere il CV completo, contattami direttamente.</p>
+  <div class="footer-links">
+    <a class="btn btn-solid" href="mailto:alifbox.career@gmail.com">[EMAIL]</a>
+    <a class="btn" href="tel:3339982229">[TELEFONO]</a>
+    <a class="btn" href="https://www.linkedin.com/in/ali-fbox/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Chiudi immagine">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+ 
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('is-open');
+  }
+ 
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightboxImg.src = '';
+  }
+ 
+  document.querySelectorAll('.expand-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const img = btn.closest('.gallery-item').querySelector('img');
+      openLightbox(btn.dataset.full, img.alt);
+    });
+  });
+ 
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+ 
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
+  }
+</script>
+
+</body>
+</html>
